@@ -1,0 +1,71 @@
+{
+  "categories": [
+    {
+      "name": "High School Math",
+      "icon": "🎓",
+      "subcategories": [
+        {
+          "name": "Algebra",
+          "courses": [
+            {
+              "title": "Sequences and Series",
+              "description": "A comprehensive exploration of sequences and series, covering arithmetic and geometric progressions, convergence, and infinite sums.",
+              "prerequisites": "Basic algebra and familiarity with functions",
+              "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppKMhncqBhKBKqiyPMvR4bif",
+              "pdfLink": "pdfs/sequences-and-series.pdf"
+            },
+            {
+              "title": "Binomial Theorem",
+              "description": "Understanding the binomial theorem, binomial coefficients, Pascal's triangle, and applications to algebraic expansions.",
+              "prerequisites": "Factorials and basic combinatorics",
+              "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppI6IOJAxtDlq4nUyGn94s0v",
+              "pdfLink": "pdfs/binomial-theorem.pdf"
+            }
+          ]
+        },
+        {
+          "name": "Calculus",
+          "courses": [
+            {
+              "title": "Introduction to Calculus",
+              "description": "Foundations of differential and integral calculus, limits, derivatives, and their applications.",
+              "prerequisites": "Algebra and trigonometry",
+              "youtubeLink": null,
+              "pdfLink": "pdfs/intro-calculus.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Higher Math",
+      "icon": "🔬",
+      "subcategories": [
+        {
+          "name": "Real Analysis",
+          "courses": [
+            {
+              "title": "Real Analysis I",
+              "description": "Rigorous treatment of sequences, series, continuity, and differentiability in the real number system.",
+              "prerequisites": "Calculus and proof-writing experience",
+              "youtubeLink": null,
+              "pdfLink": "pdfs/real-analysis-1.pdf"
+            }
+          ]
+        },
+        {
+          "name": "Linear Algebra",
+          "courses": [
+            {
+              "title": "Linear Algebra Fundamentals",
+              "description": "Vector spaces, linear transformations, matrices, eigenvalues, and applications.",
+              "prerequisites": "Basic algebra",
+              "youtubeLink": null,
+              "pdfLink": "pdfs/linear-algebra.pdf"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
