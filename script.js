@@ -147,7 +147,16 @@ function displayCourses(categories) {
     });
 }
 
+function getPlaylistId(url) {
+    if (!url) return null;
+    const match = url.match(/[?&]list=([^&]+)/);
+    return match ? match[1] : null;
+}
+
 function createCourseCard(course) {
+    const playlistId = getPlaylistId(course.youtubeLink);
+    const cardId = 'player-' + Math.random().toString(36).substring(2, 9);
+
     return `
         <div class="course-card">
             <h5 class="course-title">${course.title}</h5>
@@ -156,10 +165,19 @@ function createCourseCard(course) {
                 <strong>Prerequisites</strong>
                 <span class="course-prereqs-text">${course.prerequisites}</span>
             </div>
+            ${playlistId ? `
+                <div class="video-container" id="${cardId}">
+                    <button class="video-toggle" onclick="toggleVideo('${cardId}', '${playlistId}')">
+                        <span class="video-toggle-icon">▶</span>
+                        <span>Watch Lectures</span>
+                    </button>
+                    <div class="video-embed" style="display: none;"></div>
+                </div>
+            ` : ''}
             <div class="course-links">
                 ${course.youtubeLink ? `
                     <a href="${course.youtubeLink}" target="_blank" class="course-link youtube-link">
-                        ▶ YouTube Playlist
+                        ↗ Open on YouTube
                     </a>
                 ` : ''}
                 ${course.pdfLink ? `
@@ -170,6 +188,35 @@ function createCourseCard(course) {
             </div>
         </div>
     `;
+}
+
+function toggleVideo(cardId, playlistId) {
+    const container = document.getElementById(cardId);
+    const embedDiv = container.querySelector('.video-embed');
+    const button = container.querySelector('.video-toggle');
+
+    if (embedDiv.style.display === 'none') {
+        // Load iframe only on first click (saves bandwidth)
+        if (!embedDiv.innerHTML) {
+            embedDiv.innerHTML = `
+                <iframe
+                    src="https://www.youtube.com/embed/videoseries?list=${playlistId}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+        embedDiv.style.display = 'block';
+        button.classList.add('active');
+        button.querySelector('.video-toggle-icon').textContent = '▼';
+        button.querySelector('span:last-child').textContent = 'Hide Lectures';
+    } else {
+        embedDiv.style.display = 'none';
+        button.classList.remove('active');
+        button.querySelector('.video-toggle-icon').textContent = '▶';
+        button.querySelector('span:last-child').textContent = 'Watch Lectures';
+    }
 }
 
 loadCourses();
