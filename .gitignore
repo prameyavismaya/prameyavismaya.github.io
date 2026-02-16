@@ -10,3 +10,7 @@
 
 # Temporary files
 *.tmp
+
+# Local-only files
+CLAUDE.md
+GIT_GUIDE.md
