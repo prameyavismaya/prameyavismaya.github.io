@@ -1,30 +1,107 @@
-// Navigation
+// ============================================
+// FLOATING MATHEMATICAL SYMBOLS (Canvas)
+// ============================================
+const canvas = document.getElementById('math-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const symbols = '∫∑∏∂∇∞πφθλΔ∈⊂∪∩∀∃αβγδεζηικμνξρστυψω√≈≡≤≥±∝∠⊥∥'.split('');
+const colors = [
+    'rgba(212, 165, 116, 0.08)',  // gold
+    'rgba(180, 142, 173, 0.06)',  // lavender
+    'rgba(136, 192, 208, 0.05)',  // teal
+    'rgba(163, 190, 140, 0.05)', // sage
+];
+
+class FloatingSymbol {
+    constructor() {
+        this.reset();
+        // Start at random Y so they don't all begin at bottom
+        this.y = Math.random() * canvas.height;
+    }
+
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + 20;
+        this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.size = 14 + Math.random() * 24;
+        this.speed = 0.15 + Math.random() * 0.35;
+        this.drift = (Math.random() - 0.5) * 0.3;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.005;
+    }
+
+    update() {
+        this.y -= this.speed;
+        this.x += this.drift;
+        this.rotation += this.rotationSpeed;
+
+        if (this.y < -30) {
+            this.reset();
+        }
+    }
+
+    draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.font = `${this.size}px "Cormorant Garamond", Georgia, serif`;
+        ctx.fillStyle = this.color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(this.symbol, 0, 0);
+        ctx.restore();
+    }
+}
+
+const floatingSymbols = Array.from({ length: 30 }, () => new FloatingSymbol());
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    floatingSymbols.forEach(s => {
+        s.update();
+        s.draw();
+    });
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// ============================================
+// NAVIGATION
+// ============================================
 function showSection(sectionId) {
-    // Hide all sections
     document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
     });
 
-    // Show selected section
     document.getElementById(sectionId).classList.add('active');
 
-    // Update nav active state
     document.querySelectorAll('nav a').forEach(link => {
         link.classList.remove('active');
     });
     document.querySelector(`nav a[href="#${sectionId}"]`).classList.add('active');
 }
 
-// Handle nav clicks
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const sectionId = link.getAttribute('href').substring(1);
         showSection(sectionId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
 
-// Load and display courses
+// ============================================
+// LOAD & DISPLAY COURSES
+// ============================================
 async function loadCourses() {
     try {
         const response = await fetch('courses.json');
@@ -33,7 +110,7 @@ async function loadCourses() {
     } catch (error) {
         console.error('Error loading courses:', error);
         document.getElementById('course-categories').innerHTML =
-            '<p>Error loading courses. Please check courses.json file.</p>';
+            '<p style="color: var(--text-dim);">Error loading courses. Please check courses.json file.</p>';
     }
 }
 
@@ -76,18 +153,18 @@ function createCourseCard(course) {
             <h5 class="course-title">${course.title}</h5>
             <p class="course-description">${course.description}</p>
             <div class="course-prereqs">
-                <strong>Prerequisites:</strong>
+                <strong>Prerequisites</strong>
                 <span class="course-prereqs-text">${course.prerequisites}</span>
             </div>
             <div class="course-links">
                 ${course.youtubeLink ? `
                     <a href="${course.youtubeLink}" target="_blank" class="course-link youtube-link">
-                        ▶ YouTube
+                        ▶ YouTube Playlist
                     </a>
                 ` : ''}
                 ${course.pdfLink ? `
                     <a href="${course.pdfLink}" target="_blank" class="course-link pdf-link">
-                        📄 Notes (PDF)
+                        ◈ Course Notes
                     </a>
                 ` : ''}
             </div>
@@ -95,5 +172,4 @@ function createCourseCard(course) {
     `;
 }
 
-// Load courses when page loads
 loadCourses();

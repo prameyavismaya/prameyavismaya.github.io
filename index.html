@@ -3,17 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Lectures - Course Notes</title>
+    <title>Mathematical Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Floating math symbols background -->
+    <canvas id="math-canvas"></canvas>
+
+    <!-- Hero / Header -->
     <header>
-        <div class="container">
-            <h1>∫ MATHEMATICAL ARCHIVE</h1>
-            <p class="tagline">// Unraveling the arcane mysteries of mathematics</p>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">est. MMXXVI</div>
+            <h1>The Mathematical Archive</h1>
+            <p class="tagline">Where patterns reveal themselves to the patient mind</p>
+            <div class="hero-equation">
+                e<sup>i&pi;</sup> + 1 = 0
+            </div>
         </div>
+        <!-- Decorative golden ratio spiral -->
+        <svg class="hero-spiral" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <path d="M250 250 C250 180, 310 130, 370 130 C430 130, 480 180, 480 240 C480 340, 380 420, 280 420 C140 420, 30 310, 30 180 C30 50, 130 -60, 270 -60"
+                  fill="none" stroke="url(#spiralGrad)" stroke-width="1.5" opacity="0.3"/>
+            <defs>
+                <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#d4a574" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#b48ead" stop-opacity="0.2"/>
+                </linearGradient>
+            </defs>
+        </svg>
     </header>
 
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <ul>
@@ -24,12 +49,62 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <main class="container">
         <section id="home" class="section active">
-            <h2>System Initialized</h2>
-            <p>Access a curated collection of mathematical knowledge. Each module contains video transmissions and comprehensive documentation, designed to decode the fundamental patterns underlying our reality.</p>
-            <p style="margin-top: 1.5rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">All archives are open-source and freely accessible for those seeking understanding.</p>
-            <a href="#courses" class="cta-button" onclick="showSection('courses')">ACCESS ARCHIVES →</a>
+            <div class="home-grid">
+                <div class="home-text">
+                    <h2>Explore the Depths</h2>
+                    <p class="lead">A curated collection of mathematical explorations — each one a journey from first principles to deep understanding.</p>
+                    <p>Every course pairs carefully crafted video lectures with comprehensive written notes, building intuition before rigor and always asking <em>why</em> before <em>how</em>.</p>
+                    <a href="#courses" class="cta-button" onclick="showSection('courses')">
+                        <span>Browse Courses</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="home-decoration">
+                    <!-- Decorative geometric pattern -->
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="geo-pattern">
+                        <!-- Penrose-style triangle -->
+                        <polygon points="200,40 360,320 40,320" fill="none" stroke="#d4a574" stroke-width="1" opacity="0.4"/>
+                        <polygon points="200,80 330,300 70,300" fill="none" stroke="#b48ead" stroke-width="1" opacity="0.3"/>
+                        <polygon points="200,120 300,280 100,280" fill="none" stroke="#88c0d0" stroke-width="1" opacity="0.25"/>
+                        <polygon points="200,160 270,260 130,260" fill="none" stroke="#d4a574" stroke-width="1" opacity="0.2"/>
+                        <!-- Inscribed circle -->
+                        <circle cx="200" cy="220" r="90" fill="none" stroke="#b48ead" stroke-width="0.8" opacity="0.3" stroke-dasharray="4 4"/>
+                        <circle cx="200" cy="220" r="60" fill="none" stroke="#d4a574" stroke-width="0.8" opacity="0.2" stroke-dasharray="2 6"/>
+                        <!-- Center dot -->
+                        <circle cx="200" cy="200" r="3" fill="#d4a574" opacity="0.5"/>
+                        <!-- Labels -->
+                        <text x="200" y="380" text-anchor="middle" fill="#6e7681" font-size="11" font-family="Fira Code, monospace" opacity="0.5">fig. 1 — nested triangles</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Feature cards -->
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" fill="none" stroke="#d4a574" stroke-width="1.5"/><text x="20" y="25" text-anchor="middle" fill="#d4a574" font-size="16" font-family="Cormorant Garamond, serif">&#x222B;</text></svg>
+                    </div>
+                    <h3>Video Lectures</h3>
+                    <p>Step-by-step explorations on YouTube, building from intuition to formal proofs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" fill="none" stroke="#b48ead" stroke-width="1.5"/><text x="20" y="25" text-anchor="middle" fill="#b48ead" font-size="16" font-family="Cormorant Garamond, serif">&#x2211;</text></svg>
+                    </div>
+                    <h3>Written Notes</h3>
+                    <p>Comprehensive PDF notes with proofs, examples, and exercises for every topic.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="18" fill="none" stroke="#88c0d0" stroke-width="1.5"/><text x="20" y="25" text-anchor="middle" fill="#88c0d0" font-size="16" font-family="Cormorant Garamond, serif">&#x221E;</text></svg>
+                    </div>
+                    <h3>Always Free</h3>
+                    <p>All materials are freely available. Mathematics belongs to everyone.</p>
+                </div>
+            </div>
         </section>
 
         <section id="courses" class="section">
@@ -38,16 +113,25 @@
         </section>
 
         <section id="about" class="section">
-            <h2>Mission Protocol</h2>
-            <p style="margin-bottom: 1.5rem; line-height: 1.8;">This archive represents years of deep exploration into mathematical structures—from foundational theorems to elegant proofs. Each transmission is crafted to illuminate the hidden patterns and relationships that govern abstract systems.</p>
-            <p style="color: var(--text-secondary); line-height: 1.8;">Mathematics is not merely computation; it is the language of truth, the architecture of logic, the unveiling of what lies beneath the surface. These materials are offered freely to all who dare to venture into the unknown.</p>
-            <p style="margin-top: 2rem; font-family: 'JetBrains Mono', monospace; color: var(--arc-blue); font-size: 0.9rem;">[ OPEN SOURCE • NO RESTRICTIONS • KNOWLEDGE FOR ALL ]</p>
+            <h2>About</h2>
+            <div class="about-content">
+                <p class="lead">These lectures and notes are born from a belief that mathematical beauty should be accessible to all.</p>
+                <p>Each course is designed to take you from first principles to deep understanding. The video lectures build intuition through carefully chosen examples and visual arguments, while the companion notes provide the rigorous foundations — complete with proofs, exercises, and the occasional detour into mathematical curiosities.</p>
+                <blockquote>
+                    <p>"Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding."</p>
+                    <cite>— William Paul Thurston</cite>
+                </blockquote>
+                <p>Whether you're a student preparing for exams, a self-learner exploring new territory, or simply someone who finds joy in the elegance of a well-crafted proof — these materials are for you.</p>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>© 2026 MATHEMATICAL ARCHIVE // ALL TRANSMISSIONS OPEN SOURCE</p>
+            <div class="footer-content">
+                <p class="footer-math">&#x2200; knowledge &#x2208; {free}</p>
+                <p class="footer-copy">&copy; 2026 The Mathematical Archive</p>
+            </div>
         </div>
     </footer>
 

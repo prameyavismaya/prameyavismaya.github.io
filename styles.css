@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap');
+/* ============================================
+   THE MATHEMATICAL ARCHIVE
+   A warm, elegant, dark theme
+   ============================================ */
 
 * {
     margin: 0;
@@ -7,50 +10,42 @@
 }
 
 :root {
-    --arc-blue: #00d9ff;
-    --arc-glow: #00a8cc;
-    --neon-cyan: #0ff;
-    --deep-space: #0a0e27;
-    --void-black: #050816;
-    --surface-dark: #0f1629;
-    --surface-darker: #1a1f3a;
-    --text-primary: #e0e7ff;
-    --text-secondary: #94a3b8;
-    --text-dim: #64748b;
-    --grid-line: rgba(0, 217, 255, 0.1);
-    --glow: rgba(0, 217, 255, 0.4);
-    --danger: #ff006e;
+    /* Deep warm backgrounds */
+    --bg-deepest: #0d1117;
+    --bg-deep: #161b22;
+    --bg-card: #1c2333;
+    --bg-card-hover: #21293a;
+    --bg-elevated: #272e3f;
+
+    /* Warm accent colors */
+    --gold: #d4a574;
+    --gold-bright: #e8c49a;
+    --gold-dim: #a67c52;
+    --lavender: #b48ead;
+    --lavender-bright: #c9a5c4;
+    --teal: #88c0d0;
+    --teal-dim: #6a9fb0;
+    --sage: #a3be8c;
+    --rose: #bf616a;
+    --rose-soft: #d08770;
+
+    /* Text */
+    --text-bright: #eceff4;
+    --text-primary: #d8dee9;
+    --text-secondary: #8b949e;
+    --text-dim: #6e7681;
+
+    /* Borders */
+    --border: rgba(139, 148, 158, 0.15);
+    --border-accent: rgba(212, 165, 116, 0.3);
 }
 
 body {
-    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
     color: var(--text-primary);
-    background: var(--void-black);
-    background-image:
-        radial-gradient(ellipse at top, var(--deep-space) 0%, var(--void-black) 50%),
-        repeating-linear-gradient(90deg, transparent, transparent 99px, var(--grid-line) 99px, var(--grid-line) 100px),
-        repeating-linear-gradient(0deg, transparent, transparent 99px, var(--grid-line) 99px, var(--grid-line) 100px);
-    background-attachment: fixed;
-    position: relative;
+    background: var(--bg-deepest);
     overflow-x: hidden;
-}
-
-body::before {
-    content: "∫ ∑ ∏ ∂ ∇ ∞ π φ θ λ Δ ∈ ⊂ ∪ ∩ ∀ ∃ ∴ ≈ ≡ ∫ ∑ ∏ ∂ ∇ ∞ π φ θ λ Δ ∈ ⊂ ∪ ∩ ∀ ∃ ∴ ≈ ≡";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 3rem;
-    line-height: 4rem;
-    color: rgba(0, 217, 255, 0.03);
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-    word-wrap: break-word;
-    padding: 2rem;
 }
 
 .container {
@@ -58,119 +53,168 @@ body::before {
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
-/* Header */
+/* ============================================
+   FLOATING MATH SYMBOLS CANVAS
+   ============================================ */
+#math-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================
+   HERO HEADER
+   ============================================ */
 header {
-    background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(15, 22, 41, 0.8) 100%);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--arc-blue);
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
-    color: var(--text-primary);
-    padding: 4rem 0;
-    text-align: center;
     position: relative;
+    padding: 8rem 0 6rem;
+    text-align: center;
     overflow: hidden;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(180, 142, 173, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 0%, rgba(136, 192, 208, 0.05) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-deepest) 100%);
+    border-bottom: 1px solid var(--border);
 }
 
-header::before {
-    content: '';
+.hero-overlay {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
-    animation: pulse 8s ease-in-out infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a574' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.1); opacity: 0.6; }
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-badge {
+    display: inline-block;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-accent);
+    padding: 0.4rem 1.5rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
 }
 
 header h1 {
-    font-size: 3.5rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 4.5rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, var(--arc-blue), var(--neon-cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
-    position: relative;
-    z-index: 2;
+    color: var(--text-bright);
+    margin-bottom: 1rem;
     letter-spacing: -0.02em;
+    line-height: 1.1;
 }
 
 .tagline {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--text-secondary);
-    font-family: 'JetBrains Mono', monospace;
-    position: relative;
-    z-index: 2;
-    letter-spacing: 0.05em;
+    font-style: italic;
+    margin-bottom: 2rem;
 }
 
-/* Navigation */
+.hero-equation {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+}
+
+.hero-equation sup {
+    font-size: 0.65em;
+}
+
+.hero-spiral {
+    position: absolute;
+    right: -5%;
+    top: 10%;
+    width: 400px;
+    height: 400px;
+    opacity: 0.4;
+    animation: slowSpin 120s linear infinite;
+}
+
+@keyframes slowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
 nav {
-    background: rgba(15, 22, 41, 0.95);
+    background: rgba(22, 27, 34, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 3rem;
+    gap: 0;
 }
 
 nav a {
     display: block;
-    padding: 1.25rem 0;
+    padding: 1.15rem 2rem;
     text-decoration: none;
     color: var(--text-secondary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
     transition: all 0.3s ease;
     position: relative;
 }
 
-nav a::before {
+nav a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    width: 0;
+    left: 1rem;
+    right: 1rem;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--arc-blue), transparent);
-    transform: translateX(-50%);
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px var(--arc-blue);
+    background: linear-gradient(90deg, var(--gold), var(--lavender));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    border-radius: 1px;
 }
 
 nav a:hover,
 nav a.active {
-    color: var(--arc-blue);
-    text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+    color: var(--text-bright);
 }
 
-nav a:hover::before,
-nav a.active::before {
-    width: 100%;
+nav a:hover::after,
+nav a.active::after {
+    transform: scaleX(1);
 }
 
-/* Main Content */
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
 main {
-    padding: 4rem 0;
+    padding: 5rem 0;
     min-height: 70vh;
 }
 
@@ -184,17 +228,18 @@ main {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
     margin-bottom: 3rem;
-    color: var(--text-primary);
+    color: var(--text-bright);
     font-weight: 700;
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
 }
 
 h2::after {
@@ -202,51 +247,119 @@ h2::after {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--arc-blue), transparent);
-    box-shadow: 0 0 10px var(--arc-blue);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--lavender), transparent);
+    border-radius: 1px;
+}
+
+/* ============================================
+   HOME SECTION
+   ============================================ */
+.home-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.home-text p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.home-text em {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.geo-pattern {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    display: block;
+    animation: floatGently 6s ease-in-out infinite;
+}
+
+@keyframes floatGently {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* CTA Button */
 .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     margin-top: 2rem;
-    padding: 1rem 2.5rem;
-    background: transparent;
-    color: var(--arc-blue);
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    color: var(--bg-deepest);
     text-decoration: none;
-    border: 2px solid var(--arc-blue);
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--arc-blue);
-    transition: left 0.3s ease;
-    z-index: -1;
 }
 
 .cta-button:hover {
-    color: var(--void-black);
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 165, 116, 0.25);
 }
 
-.cta-button:hover::before {
-    left: 0;
+/* Feature Cards */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature-icon {
+    margin-bottom: 1.25rem;
+}
+
+.feature-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--text-bright);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ============================================
+   COURSES SECTION
+   ============================================ */
 
 /* Category */
 .category {
@@ -256,64 +369,54 @@ h2::after {
 .category-header {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-    position: relative;
-}
-
-.category-header::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--arc-blue), transparent);
-    box-shadow: 0 0 10px var(--arc-blue);
+    border-bottom: 1px solid var(--border);
 }
 
 .category-icon {
-    font-size: 2rem;
-    filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.6));
+    font-size: 1.75rem;
 }
 
 .category-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 2rem;
-    color: var(--text-primary);
+    color: var(--text-bright);
     margin: 0;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-weight: 600;
 }
 
 /* Subcategory */
 .subcategory {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .subcategory-title {
-    font-size: 1.5rem;
-    color: var(--text-secondary);
+    font-size: 1rem;
+    color: var(--text-dim);
     margin-bottom: 1.5rem;
-    font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-family: 'Fira Code', monospace;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding-left: 1rem;
+    border-left: 3px solid var(--lavender);
 }
 
 /* Course Grid */
 .courses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+    gap: 1.75rem;
 }
 
 /* Course Card */
 .course-card {
-    background: linear-gradient(135deg, var(--surface-dark) 0%, var(--surface-darker) 100%);
-    border-radius: 8px;
+    background: var(--bg-card);
+    border-radius: 12px;
     padding: 2rem;
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border: 1px solid var(--border);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -322,20 +425,22 @@ h2::after {
 .course-card::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--lavender), var(--teal));
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .course-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--arc-blue);
-    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3),
-                0 0 0 1px rgba(0, 217, 255, 0.2) inset;
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(212, 165, 116, 0.1);
 }
 
 .course-card:hover::before {
@@ -343,36 +448,35 @@ h2::after {
 }
 
 .course-title {
-    font-size: 1.5rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.65rem;
     margin-bottom: 1rem;
-    color: var(--arc-blue);
+    color: var(--text-bright);
     font-weight: 700;
     letter-spacing: -0.01em;
-    position: relative;
 }
 
 .course-description {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 0.95rem;
+    line-height: 1.75;
 }
 
 .course-prereqs {
-    background: rgba(0, 217, 255, 0.05);
-    border-left: 2px solid var(--arc-blue);
-    padding: 1rem;
-    border-radius: 4px;
+    background: rgba(180, 142, 173, 0.08);
+    border-left: 3px solid var(--lavender);
+    padding: 0.875rem 1rem;
+    border-radius: 0 6px 6px 0;
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
 }
 
 .course-prereqs strong {
-    color: var(--arc-blue);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    color: var(--lavender);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
 }
 
 .course-prereqs-text {
@@ -384,103 +488,147 @@ h2::after {
 
 .course-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.875rem;
     flex-wrap: wrap;
 }
 
 .course-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1.5rem;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
     text-decoration: none;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.05em;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
     transition: all 0.3s ease;
-    border: 1px solid;
-    position: relative;
-    overflow: hidden;
 }
 
 .youtube-link {
-    background: transparent;
-    color: var(--danger);
-    border-color: var(--danger);
-}
-
-.youtube-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--danger);
-    transition: left 0.3s ease;
-    z-index: -1;
+    background: rgba(191, 97, 106, 0.15);
+    color: var(--rose-soft);
+    border: 1px solid rgba(191, 97, 106, 0.3);
 }
 
 .youtube-link:hover {
-    color: white;
-    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
-}
-
-.youtube-link:hover::before {
-    left: 0;
+    background: var(--rose);
+    color: var(--text-bright);
+    border-color: var(--rose);
+    box-shadow: 0 4px 15px rgba(191, 97, 106, 0.3);
 }
 
 .pdf-link {
-    background: transparent;
-    color: var(--arc-blue);
-    border-color: var(--arc-blue);
-}
-
-.pdf-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--arc-blue);
-    transition: left 0.3s ease;
-    z-index: -1;
+    background: rgba(136, 192, 208, 0.1);
+    color: var(--teal);
+    border: 1px solid rgba(136, 192, 208, 0.3);
 }
 
 .pdf-link:hover {
-    color: var(--void-black);
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+    background: var(--teal-dim);
+    color: var(--bg-deepest);
+    border-color: var(--teal-dim);
+    box-shadow: 0 4px 15px rgba(136, 192, 208, 0.3);
 }
 
-.pdf-link:hover::before {
-    left: 0;
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-content {
+    max-width: 750px;
 }
 
-/* Footer */
+.about-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.85;
+}
+
+.about-content .lead {
+    color: var(--text-primary);
+    font-size: 1.15rem;
+}
+
+blockquote {
+    margin: 2.5rem 0;
+    padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.06) 0%, rgba(180, 142, 173, 0.06) 100%);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+}
+
+blockquote p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.35rem;
+    color: var(--text-primary) !important;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 0.75rem !important;
+}
+
+blockquote cite {
+    color: var(--gold-dim);
+    font-size: 0.9rem;
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
 footer {
-    background: rgba(15, 22, 41, 0.6);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(0, 217, 255, 0.2);
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
     padding: 3rem 0;
     text-align: center;
-    color: var(--text-dim);
     margin-top: 6rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
 }
 
-/* Responsive */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.footer-math {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+}
+
+.footer-copy {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5rem;
+    header {
+        padding: 5rem 0 4rem;
     }
 
-    nav ul {
-        gap: 1.5rem;
-        font-size: 0.85rem;
+    header h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-spiral {
+        display: none;
+    }
+
+    .home-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .home-decoration {
+        display: none;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
     }
 
     .courses-grid {
@@ -488,35 +636,42 @@ footer {
     }
 
     .container {
-        padding: 0 1rem;
+        padding: 0 1.25rem;
     }
 
     h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    nav ul {
+        justify-content: center;
     }
 }
 
-/* Scrollbar */
+/* ============================================
+   SCROLLBAR
+   ============================================ */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--void-black);
+    background: var(--bg-deepest);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--arc-blue), var(--arc-glow));
-    border-radius: 5px;
+    background: var(--bg-elevated);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--arc-blue);
-    box-shadow: 0 0 10px var(--arc-blue);
+    background: var(--gold-dim);
 }
 
-/* Selection */
+/* ============================================
+   SELECTION
+   ============================================ */
 ::selection {
-    background: rgba(0, 217, 255, 0.3);
-    color: var(--neon-cyan);
+    background: rgba(212, 165, 116, 0.3);
+    color: var(--text-bright);
 }
