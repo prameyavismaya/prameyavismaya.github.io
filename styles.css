@@ -514,28 +514,8 @@ h2::after {
     border-color: var(--gold);
 }
 
-.video-toggle.active {
-    background: rgba(212, 165, 116, 0.15);
-    border-color: var(--gold);
-    border-radius: 6px 6px 0 0;
-}
-
 .video-toggle-icon {
     font-size: 0.8rem;
-}
-
-.video-embed {
-    border: 1px solid rgba(212, 165, 116, 0.2);
-    border-top: none;
-    border-radius: 0 0 6px 6px;
-    overflow: hidden;
-    background: var(--bg-deepest);
-}
-
-.video-embed iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    display: block;
 }
 
 .course-links {
@@ -580,6 +560,172 @@ h2::after {
     color: var(--bg-deepest);
     border-color: var(--teal-dim);
     box-shadow: 0 4px 15px rgba(136, 192, 208, 0.3);
+}
+
+/* ============================================
+   COURSE DETAIL VIEW
+   ============================================ */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: rgba(212, 165, 116, 0.1);
+    color: var(--gold);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.back-button:hover {
+    background: rgba(212, 165, 116, 0.2);
+    border-color: var(--gold);
+}
+
+.detail-player-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.detail-video-wrapper {
+    aspect-ratio: 16 / 9;
+    background: var(--bg-deep);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.detail-video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Playlist Sidebar */
+.detail-playlist-sidebar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.playlist-loading {
+    padding: 1.5rem;
+    color: var(--text-dim);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+    font-family: inherit;
+}
+
+.playlist-item:last-child {
+    border-bottom: none;
+}
+
+.playlist-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.playlist-item.active {
+    background: rgba(212, 165, 116, 0.12);
+    border-left: 3px solid var(--gold);
+}
+
+.playlist-thumb {
+    width: 60px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.playlist-item-info {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.playlist-item-number {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: 'Fira Code', monospace;
+    flex-shrink: 0;
+}
+
+.playlist-item-title {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.playlist-item.active .playlist-item-title {
+    color: var(--gold);
+}
+
+.detail-info {
+    max-width: 800px;
+}
+
+.detail-description {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.detail-prereqs {
+    background: rgba(180, 142, 173, 0.08);
+    border-left: 3px solid var(--lavender);
+    padding: 0.875rem 1rem;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.detail-prereqs strong {
+    color: var(--lavender);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detail-prereqs span {
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+.detail-links {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
 }
 
 /* ============================================
@@ -685,6 +831,14 @@ footer {
 
     .courses-grid {
         grid-template-columns: 1fr;
+    }
+
+    .detail-player-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-playlist-sidebar {
+        max-height: 300px;
     }
 
     .container {
