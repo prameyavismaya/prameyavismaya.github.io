@@ -41,7 +41,7 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.7;
     color: var(--text-primary);
     background: var(--bg-deepest);
@@ -114,7 +114,7 @@ header {
 }
 
 header h1 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 4.5rem;
     font-weight: 700;
     color: var(--text-bright);
@@ -131,7 +131,7 @@ header h1 {
 }
 
 .hero-equation {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 2rem;
     color: var(--gold);
     opacity: 0.6;
@@ -233,7 +233,7 @@ main {
 }
 
 h2 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 3rem;
     margin-bottom: 3rem;
     color: var(--text-bright);
@@ -344,7 +344,7 @@ h2::after {
 }
 
 .feature-card h3 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 1.4rem;
     color: var(--text-bright);
     margin-bottom: 0.75rem;
@@ -380,7 +380,7 @@ h2::after {
 }
 
 .category-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 2rem;
     color: var(--text-bright);
     margin: 0;
@@ -448,7 +448,7 @@ h2::after {
 }
 
 .course-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 1.65rem;
     margin-bottom: 1rem;
     color: var(--text-bright);
@@ -500,7 +500,7 @@ h2::after {
     color: var(--gold);
     border: 1px solid rgba(212, 165, 116, 0.3);
     border-radius: 6px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
@@ -574,7 +574,7 @@ h2::after {
     color: var(--gold);
     border: 1px solid rgba(212, 165, 116, 0.3);
     border-radius: 6px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
@@ -755,7 +755,7 @@ blockquote {
 }
 
 blockquote p {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 1.35rem;
     color: var(--text-primary) !important;
     font-style: italic;
@@ -767,7 +767,7 @@ blockquote cite {
     color: var(--gold-dim);
     font-size: 0.9rem;
     font-style: normal;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* ============================================
@@ -789,7 +789,7 @@ footer {
 }
 
 .footer-math {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'League Spartan', sans-serif;
     font-size: 1.1rem;
     color: var(--gold-dim);
     letter-spacing: 0.1em;

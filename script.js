@@ -48,7 +48,7 @@ class FloatingSymbol {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-        ctx.font = `${this.size}px "Cormorant Garamond", Georgia, serif`;
+        ctx.font = `${this.size}px "League Spartan", sans-serif`;
         ctx.fillStyle = this.color;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
