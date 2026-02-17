@@ -279,9 +279,20 @@ function showCourseDetail(index) {
 }
 
 function onPlayerReady(event) {
-    const videoIds = event.target.getPlaylist() || [];
-    buildPlaylistSidebar(videoIds);
-    updateActiveLecture(0);
+    waitForPlaylist(event.target, 0);
+}
+
+function waitForPlaylist(ytPlayer, attempt) {
+    const videoIds = ytPlayer.getPlaylist();
+    if (videoIds && videoIds.length > 0) {
+        buildPlaylistSidebar(videoIds);
+        updateActiveLecture(0);
+    } else if (attempt < 30) {
+        setTimeout(() => waitForPlaylist(ytPlayer, attempt + 1), 200);
+    } else {
+        document.getElementById('detail-playlist').innerHTML =
+            '<div class="playlist-loading">Could not load playlist items.</div>';
+    }
 }
 
 function onPlayerStateChange(event) {
