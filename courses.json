@@ -10,7 +10,9 @@
             {
               "title": "Sequences and Series",
               "description": "A comprehensive exploration of sequences and series, covering arithmetic and geometric progressions, convergence, and infinite sums.",
-              "prerequisites": "Basic algebra and familiarity with functions",
+              "prerequisites": "Elementary algebra till 10th standard level is sufficient. It would help to be familiar with the language of sets and functions.",
+              "relevantExams": "JEE Main, JEE Advanced, ISI, CMI",
+              "suitableFor": "High School Students",
               "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppKMhncqBhKBKqiyPMvR4bif",
               "pdfLink": "pdfs/sequences-and-series.pdf"
             },
@@ -18,6 +20,8 @@
               "title": "Binomial Theorem",
               "description": "Understanding the binomial theorem, binomial coefficients, Pascal's triangle, and applications to algebraic expansions.",
               "prerequisites": "Factorials and basic combinatorics",
+              "relevantExams": "JEE Main, JEE Advanced, ISI, CMI",
+              "suitableFor": "High School Students",
               "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppI6IOJAxtDlq4nUyGn94s0v",
               "pdfLink": "pdfs/binomial-theorem.pdf"
             }
@@ -30,6 +34,8 @@
               "title": "Introduction to Calculus",
               "description": "Foundations of differential and integral calculus, limits, derivatives, and their applications.",
               "prerequisites": "Algebra and trigonometry",
+              "relevantExams": "JEE Main, JEE Advanced",
+              "suitableFor": "High School Students",
               "youtubeLink": null,
               "pdfLink": "pdfs/intro-calculus.pdf"
             }
@@ -48,6 +54,8 @@
               "title": "Real Analysis I",
               "description": "Rigorous treatment of sequences, series, continuity, and differentiability in the real number system.",
               "prerequisites": "Calculus and proof-writing experience",
+              "relevantExams": "ISI, CMI, TIFR",
+              "suitableFor": "Undergraduate Students",
               "youtubeLink": null,
               "pdfLink": "pdfs/real-analysis-1.pdf"
             }
@@ -60,6 +68,8 @@
               "title": "Linear Algebra Fundamentals",
               "description": "Vector spaces, linear transformations, matrices, eigenvalues, and applications.",
               "prerequisites": "Basic algebra",
+              "relevantExams": "ISI, CMI, TIFR, GATE",
+              "suitableFor": "Undergraduate Students",
               "youtubeLink": null,
               "pdfLink": "pdfs/linear-algebra.pdf"
             }

@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=League+Spartan:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -109,6 +109,12 @@
 
         <section id="courses" class="section">
             <h2>Courses</h2>
+            <div class="course-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="High School">High School</button>
+                <button class="filter-btn" data-filter="Undergraduate">Undergraduate</button>
+                <button class="filter-btn" data-filter="Olympiad">Olympiad</button>
+            </div>
             <div id="course-categories"></div>
         </section>
 
@@ -121,7 +127,11 @@
             </div>
             <div class="detail-info">
                 <p class="detail-description" id="detail-description"></p>
-                <div class="detail-prereqs" id="detail-prereqs"></div>
+                <div class="detail-meta-row">
+                    <div class="detail-prereqs" id="detail-prereqs"></div>
+                    <div class="detail-relevant-exams" id="detail-relevant-exams"></div>
+                    <div class="detail-suitable-for" id="detail-suitable-for"></div>
+                </div>
                 <div class="detail-links" id="detail-links"></div>
             </div>
         </section>
@@ -149,6 +159,20 @@
         </div>
     </footer>
 
-    <script src="script.js?v=3"></script>
+    <!-- Side pane overlay -->
+    <div id="side-pane-overlay" class="side-pane-overlay" onclick="closeSidePane()"></div>
+
+    <!-- Side pane -->
+    <div id="side-pane" class="side-pane">
+        <div class="side-pane-header">
+            <span class="side-pane-title" id="side-pane-title"></span>
+            <button class="side-pane-close" onclick="closeSidePane()">✕</button>
+        </div>
+        <div class="side-pane-body">
+            <div id="side-pane-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js?v=5"></script>
 </body>
 </html>

@@ -358,208 +358,300 @@ h2::after {
 }
 
 /* ============================================
-   COURSES SECTION
+   COURSE FILTERS
    ============================================ */
 
-/* Category */
-.category {
-    margin-bottom: 4rem;
-}
-
-.category-header {
+.course-filters {
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.category-icon {
-    font-size: 1.75rem;
-}
-
-.category-title {
-    font-family: 'League Spartan', sans-serif;
-    font-size: 2rem;
-    color: var(--text-bright);
-    margin: 0;
-    font-weight: 600;
-}
-
-/* Subcategory */
-.subcategory {
+    gap: 0.6rem;
+    flex-wrap: wrap;
     margin-bottom: 2.5rem;
 }
 
-.subcategory-title {
-    font-size: 1rem;
-    color: var(--text-dim);
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-    font-family: 'Fira Code', monospace;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding-left: 1rem;
-    border-left: 3px solid var(--lavender);
-}
-
-/* Course Grid */
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 1.75rem;
-}
-
-/* Course Card */
-.course-card {
-    background: var(--bg-card);
-    border-radius: 12px;
-    padding: 2rem;
+.filter-btn {
+    padding: 0.45rem 1.2rem;
+    border-radius: 2rem;
     border: 1px solid var(--border);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+    background: none;
+    color: var(--text-dim);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
 }
 
-.course-card::before {
-    content: '';
-    position: absolute;
+.filter-btn:hover {
+    border-color: var(--gold-dim);
+    color: var(--text-secondary);
+}
+
+.filter-btn.active {
+    background: rgba(212, 165, 116, 0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ============================================
+   COURSES TREE VIEW
+   ============================================ */
+
+.tree-subcategory-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-left: 1.5rem;
+    margin: 1.5rem 0 0.4rem;
+    display: block;
+}
+
+/* Course item */
+.tree-course-item {
+    margin: 0.1rem 0;
+}
+
+.tree-course-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.45rem 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.tree-course-toggle:hover {
+    color: var(--gold);
+    background: rgba(212, 165, 116, 0.05);
+}
+
+.tree-course-toggle.expanded {
+    color: var(--gold-bright);
+}
+
+.tree-arrow {
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.tree-course-toggle.expanded .tree-arrow {
+    transform: rotate(90deg);
+    color: var(--gold);
+}
+
+/* Subtree (expanded items) */
+.tree-course-subtree {
+    display: none;
+    margin-left: 3.75rem;
+    padding: 0.15rem 0;
+    border-left: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+.tree-course-subtree.open {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Grayed-out (filtered) course */
+.tree-course-item.grayed .tree-course-toggle {
+    opacity: 0.22;
+    cursor: default;
+    pointer-events: none;
+}
+
+.tree-course-item.grayed .tree-course-subtree {
+    display: none !important;
+}
+
+/* Each sub-item row */
+.tree-subitem {
+    display: flex;
+    align-items: center;
+    padding: 0.28rem 0 0.28rem 0.75rem;
+}
+
+.tree-subitem::before {
+    content: '—';
+    color: var(--text-dim);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    margin-right: 0.65rem;
+    flex-shrink: 0;
+}
+
+/* Clickable info items (Description, Prerequisites, Relevant Exams) */
+.tree-subitem-btn {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.93rem;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+    text-decoration: none;
+}
+
+.tree-subitem-btn:hover {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Static inline text (Suitable for) */
+.tree-subitem-static {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.93rem;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+/* Watch Here */
+.tree-subitem-watch-here {
+    color: var(--teal) !important;
+    font-weight: 600 !important;
+}
+
+.tree-subitem-watch-here:hover {
+    color: var(--teal-dim) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+}
+
+/* Course Notes link */
+.tree-subitem-notes {
+    color: var(--sage) !important;
+    font-weight: 600 !important;
+}
+
+.tree-subitem-notes:hover {
+    color: var(--lavender) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+}
+
+/* Watch on YouTube link */
+.tree-subitem-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.93rem;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.tree-subitem-watch-yt {
+    color: var(--rose-soft) !important;
+    font-weight: 600 !important;
+}
+
+.tree-subitem-watch-yt:hover {
+    color: var(--rose) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+}
+
+/* ============================================
+   SIDE PANE
+   ============================================ */
+
+.side-pane-overlay {
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--lavender), var(--teal));
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
-.course-card:hover {
-    border-color: var(--border-accent);
-    background: var(--bg-card-hover);
-    transform: translateY(-6px);
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(212, 165, 116, 0.1);
-}
-
-.course-card:hover::before {
+.side-pane-overlay.visible {
     opacity: 1;
+    pointer-events: auto;
 }
 
-.course-title {
-    font-family: 'League Spartan', sans-serif;
-    font-size: 1.65rem;
-    margin-bottom: 1rem;
-    color: var(--text-bright);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
-
-.course-description {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    line-height: 1.75;
-}
-
-.course-prereqs {
-    background: rgba(180, 142, 173, 0.08);
-    border-left: 3px solid var(--lavender);
-    padding: 0.875rem 1rem;
-    border-radius: 0 6px 6px 0;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.course-prereqs strong {
-    color: var(--lavender);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.03em;
-}
-
-.course-prereqs-text {
-    color: var(--text-dim);
-    font-style: italic;
-    display: block;
-    margin-top: 0.25rem;
-}
-
-/* Video Embed */
-.video-container {
-    margin-bottom: 1.5rem;
-}
-
-.video-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1.5rem;
-    background: rgba(212, 165, 116, 0.1);
-    color: var(--gold);
-    border: 1px solid rgba(212, 165, 116, 0.3);
-    border-radius: 6px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    justify-content: center;
-}
-
-.video-toggle:hover {
-    background: rgba(212, 165, 116, 0.2);
-    border-color: var(--gold);
-}
-
-.video-toggle-icon {
-    font-size: 0.8rem;
-}
-
-.course-links {
+.side-pane {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 90vw);
+    height: 100%;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
     display: flex;
-    gap: 0.875rem;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.course-link {
-    display: inline-flex;
+.side-pane.open {
+    transform: translateX(0);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.side-pane-header {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.25rem;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: all 0.3s ease;
+    justify-content: space-between;
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg-card);
+    z-index: 1;
 }
 
-.youtube-link {
-    background: rgba(191, 97, 106, 0.15);
-    color: var(--rose-soft);
-    border: 1px solid rgba(191, 97, 106, 0.3);
+.side-pane-title {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 600;
 }
 
-.youtube-link:hover {
-    background: var(--rose);
+.side-pane-close {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+}
+
+.side-pane-close:hover {
     color: var(--text-bright);
-    border-color: var(--rose);
-    box-shadow: 0 4px 15px rgba(191, 97, 106, 0.3);
 }
 
-.pdf-link {
-    background: rgba(136, 192, 208, 0.1);
-    color: var(--teal);
-    border: 1px solid rgba(136, 192, 208, 0.3);
+.side-pane-body {
+    padding: 1.75rem;
+    flex: 1;
 }
 
-.pdf-link:hover {
-    background: var(--teal-dim);
-    color: var(--bg-deepest);
-    border-color: var(--teal-dim);
-    box-shadow: 0 4px 15px rgba(136, 192, 208, 0.3);
+#side-pane-content {
+    color: var(--text-secondary);
+    line-height: 1.85;
+    font-size: 0.95rem;
 }
 
 /* ============================================
@@ -699,13 +791,25 @@ h2::after {
     margin-bottom: 1.5rem;
 }
 
+.detail-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1.5rem;
+}
+
+.detail-prereqs,
+.detail-relevant-exams,
+.detail-suitable-for {
+    padding: 0.875rem 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
 .detail-prereqs {
     background: rgba(180, 142, 173, 0.08);
     border-left: 3px solid var(--lavender);
-    padding: 0.875rem 1rem;
-    border-radius: 0 6px 6px 0;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
 }
 
 .detail-prereqs strong {
@@ -722,10 +826,87 @@ h2::after {
     font-style: italic;
 }
 
+.detail-relevant-exams {
+    background: rgba(136, 192, 208, 0.08);
+    border-left: 3px solid var(--teal);
+}
+
+.detail-relevant-exams strong {
+    color: var(--teal);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detail-relevant-exams span {
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+.detail-suitable-for {
+    background: rgba(163, 190, 140, 0.08);
+    border-left: 3px solid var(--sage);
+}
+
+.detail-suitable-for strong {
+    color: var(--sage);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detail-suitable-for span {
+    color: var(--text-dim);
+    font-style: italic;
+}
+
 .detail-links {
     display: flex;
     gap: 0.875rem;
     flex-wrap: wrap;
+    margin-top: 0.75rem;
+}
+
+.course-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.youtube-link {
+    background: rgba(191, 97, 106, 0.15);
+    color: var(--rose-soft);
+    border: 1px solid rgba(191, 97, 106, 0.3);
+}
+
+.youtube-link:hover {
+    background: var(--rose);
+    color: var(--text-bright);
+    border-color: var(--rose);
+    box-shadow: 0 4px 15px rgba(191, 97, 106, 0.3);
+}
+
+.pdf-link {
+    background: rgba(136, 192, 208, 0.1);
+    color: var(--teal);
+    border: 1px solid rgba(136, 192, 208, 0.3);
+}
+
+.pdf-link:hover {
+    background: var(--teal-dim);
+    color: var(--bg-deepest);
+    border-color: var(--teal-dim);
+    box-shadow: 0 4px 15px rgba(136, 192, 208, 0.3);
 }
 
 /* ============================================
@@ -829,8 +1010,13 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .courses-grid {
-        grid-template-columns: 1fr;
+    .tree-course-toggle {
+        font-size: 1.05rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .tree-course-subtree {
+        margin-left: 2.5rem;
     }
 
     .detail-player-layout {

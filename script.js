@@ -92,7 +92,6 @@ document.querySelectorAll('nav a').forEach(link => {
 let ytReady = false;
 let pendingCourseIndex = null;
 
-// Load the IFrame Player API asynchronously
 const ytScript = document.createElement('script');
 ytScript.src = 'https://www.youtube.com/iframe_api';
 document.head.appendChild(ytScript);
@@ -105,6 +104,25 @@ window.onYouTubeIframeAPIReady = function() {
         showCourseDetail(idx);
     }
 };
+
+// ============================================
+// SIDE PANE
+// ============================================
+function openSidePane(title, content) {
+    document.getElementById('side-pane-title').textContent = title;
+    document.getElementById('side-pane-content').textContent = content;
+    document.getElementById('side-pane').classList.add('open');
+    document.getElementById('side-pane-overlay').classList.add('visible');
+}
+
+function closeSidePane() {
+    document.getElementById('side-pane').classList.remove('open');
+    document.getElementById('side-pane-overlay').classList.remove('visible');
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSidePane();
+});
 
 // ============================================
 // LOAD & DISPLAY COURSES
@@ -135,72 +153,196 @@ function displayCourses(categories) {
     let courseIndex = 0;
 
     categories.forEach(category => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'category';
-        categoryDiv.innerHTML = `
-            <div class="category-header">
-                <span class="category-icon">${category.icon}</span>
-                <h3 class="category-title">${category.name}</h3>
-            </div>
-        `;
-
         category.subcategories.forEach(subcategory => {
-            const subcategoryDiv = document.createElement('div');
-            subcategoryDiv.className = 'subcategory';
-            const coursesHtml = subcategory.courses.map(course => {
-                const html = createCourseCard(course, courseIndex);
-                courseIndex++;
-                return html;
-            }).join('');
-            subcategoryDiv.innerHTML = `
-                <h4 class="subcategory-title">${subcategory.name}</h4>
-                <div class="courses-grid">${coursesHtml}</div>
-            `;
-            categoryDiv.appendChild(subcategoryDiv);
-        });
+            // Subcategory label
+            const subLabel = document.createElement('span');
+            subLabel.className = 'tree-subcategory-label';
+            subLabel.textContent = subcategory.name;
+            container.appendChild(subLabel);
 
-        container.appendChild(categoryDiv);
+            subcategory.courses.forEach(course => {
+                const item = createTreeCourseItem(course, courseIndex);
+                container.appendChild(item);
+                courseIndex++;
+            });
+        });
+    });
+
+    setupFilters();
+}
+
+function createTreeCourseItem(course, index) {
+    const item = document.createElement('div');
+    item.className = 'tree-course-item';
+    item.dataset.suitableFor = course.suitableFor || '';
+
+    // Toggle button (course title row)
+    const toggle = document.createElement('button');
+    toggle.className = 'tree-course-toggle';
+
+    const arrow = document.createElement('span');
+    arrow.className = 'tree-arrow';
+    arrow.textContent = '▶';
+    toggle.appendChild(arrow);
+    toggle.appendChild(document.createTextNode(' ' + course.title));
+
+    // Subtree (expanded children)
+    const subtree = document.createElement('div');
+    subtree.className = 'tree-course-subtree';
+
+    // Description
+    if (course.description) {
+        subtree.appendChild(createSubItemBtn('Description', course.description));
+    }
+
+    // Prerequisites
+    if (course.prerequisites) {
+        subtree.appendChild(createSubItemBtn('Prerequisites', course.prerequisites));
+    }
+
+    // Relevant Exams
+    if (course.relevantExams) {
+        subtree.appendChild(createSubItemBtn('Relevant Exams', course.relevantExams));
+    }
+
+    // Suitable for (static, shown inline)
+    if (course.suitableFor) {
+        subtree.appendChild(createSubItemStatic('Suitable for: ' + course.suitableFor));
+    }
+
+    // Watch Here (detail page)
+    if (course.youtubeLink) {
+        subtree.appendChild(createSubItemAction('Watch Here', () => showCourseDetail(index), 'watch-here'));
+    }
+
+    // Watch on YouTube
+    if (course.youtubeLink) {
+        subtree.appendChild(createSubItemLink('Watch on YouTube', course.youtubeLink, 'watch-yt'));
+    }
+
+    // Course Notes
+    if (course.pdfLink) {
+        subtree.appendChild(createSubItemLink('Course Notes', course.pdfLink, 'notes'));
+    }
+
+    // Toggle expand/collapse
+    toggle.addEventListener('click', () => {
+        const isOpen = subtree.classList.contains('open');
+        // Close all other open subtrees
+        document.querySelectorAll('.tree-course-subtree.open').forEach(st => {
+            st.classList.remove('open');
+            if (st.previousElementSibling) {
+                st.previousElementSibling.classList.remove('expanded');
+            }
+        });
+        if (!isOpen) {
+            subtree.classList.add('open');
+            toggle.classList.add('expanded');
+        }
+    });
+
+    item.appendChild(toggle);
+    item.appendChild(subtree);
+    return item;
+}
+
+// ============================================
+// COURSE FILTERS
+// ============================================
+function setupFilters() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+
+            if (filter === 'all') {
+                // Activate only "All"
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilter(['all']);
+            } else {
+                // Toggle this specific filter; deactivate "All"
+                btn.classList.toggle('active');
+                document.querySelector('.filter-btn[data-filter="all"]').classList.remove('active');
+
+                const activeFilters = Array.from(
+                    document.querySelectorAll('.filter-btn.active')
+                ).map(b => b.dataset.filter);
+
+                if (activeFilters.length === 0) {
+                    // Nothing active → fall back to All
+                    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+                    applyFilter(['all']);
+                } else {
+                    applyFilter(activeFilters);
+                }
+            }
+        });
     });
 }
 
-function getPlaylistId(url) {
-    if (!url) return null;
-    const match = url.match(/[?&]list=([^&]+)/);
-    return match ? match[1] : null;
+function applyFilter(activeFilters) {
+    document.querySelectorAll('.tree-course-item').forEach(item => {
+        const suitableFor = item.dataset.suitableFor || '';
+        const showAll = activeFilters.includes('all');
+        const matches = showAll || activeFilters.some(
+            f => suitableFor.toLowerCase().includes(f.toLowerCase())
+        );
+
+        if (matches) {
+            item.classList.remove('grayed');
+        } else {
+            item.classList.add('grayed');
+            // Collapse any open subtree
+            const subtree = item.querySelector('.tree-course-subtree');
+            const toggle = item.querySelector('.tree-course-toggle');
+            if (subtree) subtree.classList.remove('open');
+            if (toggle) toggle.classList.remove('expanded');
+        }
+    });
 }
 
-function createCourseCard(course, index) {
-    const playlistId = getPlaylistId(course.youtubeLink);
-    return `
-        <div class="course-card">
-            <h5 class="course-title">${course.title}</h5>
-            <p class="course-description">${course.description}</p>
-            <div class="course-prereqs">
-                <strong>Prerequisites</strong>
-                <span class="course-prereqs-text">${course.prerequisites}</span>
-            </div>
-            ${playlistId ? `
-                <div class="video-container">
-                    <button class="video-toggle" onclick="showCourseDetail(${index})">
-                        <span class="video-toggle-icon">▶</span>
-                        <span>Watch Lectures</span>
-                    </button>
-                </div>
-            ` : ''}
-            <div class="course-links">
-                ${course.youtubeLink ? `
-                    <a href="${course.youtubeLink}" target="_blank" class="course-link youtube-link">
-                        ↗ Open on YouTube
-                    </a>
-                ` : ''}
-                ${course.pdfLink ? `
-                    <a href="${course.pdfLink}" target="_blank" class="course-link pdf-link">
-                        ◈ Course Notes
-                    </a>
-                ` : ''}
-            </div>
-        </div>
-    `;
+function createSubItemBtn(label, content) {
+    const row = document.createElement('div');
+    row.className = 'tree-subitem';
+    const btn = document.createElement('button');
+    btn.className = 'tree-subitem-btn';
+    btn.textContent = label;
+    btn.addEventListener('click', () => openSidePane(label, content));
+    row.appendChild(btn);
+    return row;
+}
+
+function createSubItemStatic(text) {
+    const row = document.createElement('div');
+    row.className = 'tree-subitem';
+    const span = document.createElement('span');
+    span.className = 'tree-subitem-static';
+    span.textContent = text;
+    row.appendChild(span);
+    return row;
+}
+
+function createSubItemAction(label, action, cssClass) {
+    const row = document.createElement('div');
+    row.className = 'tree-subitem';
+    const btn = document.createElement('button');
+    btn.className = 'tree-subitem-btn tree-subitem-' + cssClass;
+    btn.textContent = label;
+    btn.addEventListener('click', action);
+    row.appendChild(btn);
+    return row;
+}
+
+function createSubItemLink(label, href, cssClass) {
+    const row = document.createElement('div');
+    row.className = 'tree-subitem';
+    const a = document.createElement('a');
+    a.className = 'tree-subitem-link tree-subitem-' + cssClass;
+    a.textContent = label;
+    a.href = href;
+    a.target = '_blank';
+    row.appendChild(a);
+    return row;
 }
 
 // ============================================
@@ -209,10 +351,8 @@ function createCourseCard(course, index) {
 let player = null;
 
 function showCourseDetail(index) {
-    // If YouTube API isn't loaded yet, queue and wait
     if (!ytReady) {
         pendingCourseIndex = index;
-        // Show section immediately with a loading state
         document.getElementById('detail-title').textContent = allCourses[index].title;
         document.getElementById('detail-video').innerHTML = '';
         document.getElementById('detail-playlist').innerHTML =
@@ -230,11 +370,22 @@ function showCourseDetail(index) {
 
     // Populate text info
     document.getElementById('detail-title').textContent = course.title;
-    document.getElementById('detail-description').textContent = course.description;
-    document.getElementById('detail-prereqs').innerHTML = `
+    document.getElementById('detail-description').textContent = course.description || '';
+
+    document.getElementById('detail-prereqs').innerHTML = course.prerequisites ? `
         <strong>Prerequisites</strong>
         <span>${course.prerequisites}</span>
-    `;
+    ` : '';
+
+    document.getElementById('detail-relevant-exams').innerHTML = course.relevantExams ? `
+        <strong>Relevant Exams</strong>
+        <span>${course.relevantExams}</span>
+    ` : '';
+
+    document.getElementById('detail-suitable-for').innerHTML = course.suitableFor ? `
+        <strong>Suitable For</strong>
+        <span>${course.suitableFor}</span>
+    ` : '';
 
     let linksHtml = '';
     if (course.youtubeLink) {
@@ -251,7 +402,6 @@ function showCourseDetail(index) {
         player = null;
     }
 
-    // Setup player container
     document.getElementById('detail-video').innerHTML = '<div id="yt-player"></div>';
     document.getElementById('detail-playlist').innerHTML =
         '<div class="playlist-loading">Loading playlist...</div>';
@@ -276,6 +426,12 @@ function showCourseDetail(index) {
     const nav = document.querySelector('nav a[href="#courses"]');
     if (nav) nav.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getPlaylistId(url) {
+    if (!url) return null;
+    const match = url.match(/[?&]list=([^&]+)/);
+    return match ? match[1] : null;
 }
 
 function onPlayerReady(event) {
@@ -322,7 +478,6 @@ function buildPlaylistSidebar(videoIds) {
         sidebar.appendChild(item);
     });
 
-    // Fetch actual video titles asynchronously
     videoIds.forEach((videoId, i) => {
         fetchVideoTitle(videoId, i);
     });
@@ -349,7 +504,6 @@ function updateActiveLecture(activeIndex) {
     document.querySelectorAll('.playlist-item').forEach((item, i) => {
         item.classList.toggle('active', i === activeIndex);
     });
-    // Scroll active item into view in sidebar
     const activeItem = document.querySelector('.playlist-item.active');
     if (activeItem) {
         activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
