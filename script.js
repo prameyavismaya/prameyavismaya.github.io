@@ -135,9 +135,7 @@ async function loadCourses() {
         const data = await response.json();
         allCourses = [];
         data.categories.forEach(cat => {
-            cat.subcategories.forEach(sub => {
-                sub.courses.forEach(course => allCourses.push(course));
-            });
+            cat.courses.forEach(course => allCourses.push(course));
         });
         displayCourses(data.categories);
     } catch (error) {
@@ -153,18 +151,15 @@ function displayCourses(categories) {
     let courseIndex = 0;
 
     categories.forEach(category => {
-        category.subcategories.forEach(subcategory => {
-            // Subcategory label
-            const subLabel = document.createElement('span');
-            subLabel.className = 'tree-subcategory-label';
-            subLabel.textContent = subcategory.name;
-            container.appendChild(subLabel);
+        const catLabel = document.createElement('span');
+        catLabel.className = 'tree-subcategory-label';
+        catLabel.textContent = category.name;
+        container.appendChild(catLabel);
 
-            subcategory.courses.forEach(course => {
-                const item = createTreeCourseItem(course, courseIndex);
-                container.appendChild(item);
-                courseIndex++;
-            });
+        category.courses.forEach(course => {
+            const item = createTreeCourseItem(course, courseIndex);
+            container.appendChild(item);
+            courseIndex++;
         });
     });
 

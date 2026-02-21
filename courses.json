@@ -1,79 +1,317 @@
 {
   "categories": [
+
     {
-      "name": "High School Math",
-      "icon": "🎓",
-      "subcategories": [
+      "name": "Sets, Functions and Relations",
+      "icon": "∑",
+      "courses": [
         {
-          "name": "Algebra",
-          "courses": [
-            {
-              "title": "Sequences and Series",
-              "description": "A comprehensive exploration of sequences and series, covering arithmetic and geometric progressions, convergence, and infinite sums.",
-              "prerequisites": "Elementary algebra till 10th standard level is sufficient. It would help to be familiar with the language of sets and functions.",
-              "relevantExams": "JEE Main, JEE Advanced, ISI, CMI",
-              "suitableFor": "High School Students",
-              "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppKMhncqBhKBKqiyPMvR4bif",
-              "pdfLink": "pdfs/sequences-and-series.pdf"
-            },
-            {
-              "title": "Binomial Theorem",
-              "description": "Understanding the binomial theorem, binomial coefficients, Pascal's triangle, and applications to algebraic expansions.",
-              "prerequisites": "Factorials and basic combinatorics",
-              "relevantExams": "JEE Main, JEE Advanced, ISI, CMI",
-              "suitableFor": "High School Students",
-              "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppI6IOJAxtDlq4nUyGn94s0v",
-              "pdfLink": "pdfs/binomial-theorem.pdf"
-            }
-          ]
+          "title": "Sets",
+          "description": "These set of videos introduce the language of sets as needed for effective communication of mathematics at any level. These videos are more than suitable for preparation for the JEE Advanced exam, though there are almost no question in JEE Advanced that are based purely on sets. After this playlist the natural next step is to go though the playlist on functions. Total Watch Duration: 2h 48m. Average Duration Per Video: 21m",
+          "prerequisites": "An open mind and some grit.",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students, Undergraduate Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppIpneJHrYHnaf64RWRw1c0Y",
+          "pdfLink": "pdfs/SetsAndFunctions.pdf"
         },
         {
-          "name": "Calculus",
-          "courses": [
-            {
-              "title": "Introduction to Calculus",
-              "description": "Foundations of differential and integral calculus, limits, derivatives, and their applications.",
-              "prerequisites": "Algebra and trigonometry",
-              "relevantExams": "JEE Main, JEE Advanced",
-              "suitableFor": "High School Students",
-              "youtubeLink": null,
-              "pdfLink": "pdfs/intro-calculus.pdf"
-            }
-          ]
+          "title": "Functions",
+          "description": "This will be a short lecture series about the general theory of functions. We will discuss the definition, look at various examples, and then go through the basic concepts like image, preimage, injections, surjections, bijections and more. We will also look at some foundational theorems on enumerative combinatorics (aka permutation and combination). Towards the end we will introduce the notion of the graph of a real valued function having real domain. Total Watch Duration: 5h 41m. Average Duration Per Video: 37m",
+          "prerequisites": "Sets",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students, Undergraduate Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppL5JZdxmeRBFpxGpx5VjTcv",
+          "pdfLink": "pdfs/SetsAndFunctions.pdf"
+        },
+        {
+          "title": "Relations",
+          "description": "This will be a short lecture series about relations. We will discuss the definition, look at various examples, and spend the next two lectures on equivalence relations. Total Watch Duration: 1h 30m Average Duration Per Video: 30m",
+          "prerequisites": "Sets, Functions",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students, Undergraduate Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppITKYRuw5RvJwEsq_WSfhEQ",
+          "pdfLink": "pdfs/SetsAndFunctions.pdf"
+        },
+        {
+          "title": "Graphs (To be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": "pdfs/SetsAndFunctions.pdf"
         }
       ]
     },
+
+
+
+
+
+
+
+
+
+
+
     {
-      "name": "Higher Math",
-      "icon": "🔬",
-      "subcategories": [
+      "name": "Algebra",
+      "icon": "∑",
+      "courses": [
         {
-          "name": "Real Analysis",
-          "courses": [
-            {
-              "title": "Real Analysis I",
-              "description": "Rigorous treatment of sequences, series, continuity, and differentiability in the real number system.",
-              "prerequisites": "Calculus and proof-writing experience",
-              "relevantExams": "ISI, CMI, TIFR",
-              "suitableFor": "Undergraduate Students",
-              "youtubeLink": null,
-              "pdfLink": "pdfs/real-analysis-1.pdf"
-            }
-          ]
+          "title": "Quadratic Equations (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
         },
         {
-          "name": "Linear Algebra",
-          "courses": [
-            {
-              "title": "Linear Algebra Fundamentals",
-              "description": "Vector spaces, linear transformations, matrices, eigenvalues, and applications.",
-              "prerequisites": "Basic algebra",
-              "relevantExams": "ISI, CMI, TIFR, GATE",
-              "suitableFor": "Undergraduate Students",
-              "youtubeLink": null,
-              "pdfLink": "pdfs/linear-algebra.pdf"
-            }
-          ]
+          "title": "Sequences and Series",
+          "description": "Detailed lectures on Sequence and Series. These videos are more than suitable for preparation for the JEE Advanced exam. These videos will feature solutions to almost all the problems pertaining to sequence and series that appeared in JEE Advanced from 2007 onward. Note that I have not included problems involving trigonometric functions. Those problems will be taken in a dedicated course on trigonometry. Total Watch Time: 15h. Average Duration Per Video: 31m",
+          "prerequisites": "Graphs, Quadratic Equations. It would be helpful to know the theory of Sets, Functions and Relations but this is not a hard pre-requisite.",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppKMhncqBhKBKqiyPMvR4bif",
+          "pdfLink": ""
+        },
+        {
+          "title": "Binomial Theorem",
+          "description": "Detailed lectures in Binomial Theorem. These videos are more than suitable for preparation for the JEE Advanced exam. These videos will feature solutions to almost all the problems pertaining to Binomial Theorem that appeared in JEE Advanced from 2007 onward.",
+          "prerequisites": "Quadratic Equations, Sequence and Series. It would be helpful to know some Calculus but this is not stcitly needed. Also, knowing the language of sets and functions is always recommended, though, again, it is not crucial.",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students",
+          "youtubeLink": "https://www.youtube.com/watch?v=9_fpLEsclL8&list=PLfMiIk4vyppI6IOJAxtDlq4nUyGn94s0v",
+          "pdfLink": ""
+        },
+        {
+          "title": "Complex Numbers",
+          "description": "Detailed lectures in high school level study of complex numbers. These videos are more than suitable for preparation for the JEE Advanced exam. These videos will feature solutions to almost all the problems pertaining to complex numbers that appeared in JEE Advanced from 2007 onward. Total Watch Duration: 15h 46m. Average Duration Per Video: 25m",
+          "prerequisites": "Sets and Functions, Quadratic Equation, Basic Euclidean Geometry, Basic Coordinate Geometry, Basic Trigonometry, Sequence and Series, Binomial Theorem, Vector Algebra",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppI6IOJAxtDlq4nUyGn94s0v",
+          "pdfLink": "pdfs/binomial-theorem.pdf"
+        },
+        {
+          "title": "Polynomials/Theory of Equations (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students, Olympiad",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppI6IOJAxtDlq4nUyGn94s0v",
+          "pdfLink": ""
+        }
+
+      ]
+    },
+
+
+
+
+
+
+
+
+
+
+    {
+      "name": "Trigonometry",
+      "icon": "∑",
+      "courses": [
+        {
+          "title": "Compund Angles (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
+        },
+        {
+          "title": "Trigonometric Equations (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
+        },
+        {
+          "title": "Solution of Trianlges (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
+        }
+      ]
+    },
+
+
+
+
+
+
+
+
+    {
+      "name": "Coordinate Geometry",
+      "icon": "∑",
+      "courses": [
+        {
+          "title": "Straight Lines",
+          "description": "We will undertake a comprehensive study of straight lines. What is of paramount importance is the ability to think geometrically and the viewer should seek to develop/sharpen this skill. These videos are more than suitable for preparation for the JEE Advanced exam. These videos will feature solutions to almost all the problems pertaining to Straight Lines that appeared in JEE Advanced from 2007 onward. Total Watch Time: 19 hours. Average Duration Per Video: 33m",
+          "prerequisites": "Sets, Functions, Graphs, Sequence and Series, Quadratic Equation, Basic Trigonometry",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppLaXWxeSybu8a9sblMCgwBh",
+          "pdfLink": ""
+        },
+        {
+          "title": "Circles (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
+        },
+        {
+          "title": "Conics (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
+        }
+      ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+      "name": "Vectors",
+      "icon": "∑",
+      "courses": [
+        {
+          "title": "Vector Algebra",
+          "description": "We will undertake a comprehensive study of vector algebra in 2D and 3D. Following is a rough course outline. What is of paramount importance is the ability to think geometrically and the viewer should seek to develop/sharpen this skill. These videos are more than suitable for preparation for the JEE Advanced exam as well as the ISI and CMI entrance exams. These videos will feature solutions to almost all the problems pertaining to Straight Lines that appeared in JEE Advanced from 2007 onward. Total Watch Time: 20h 22m. Average Duration Per Video: 39m",
+          "prerequisites": "Sets, Functions, Euclidean Geometry, Quadratic Equation, Basic Trigonometry, Basic Coordinate Geometry.",
+          "relevantExams": "JEE, ISI, CMI",
+          "suitableFor": "High School Students",
+          "youtubeLink": "https://www.youtube.com/playlist?list=PLfMiIk4vyppKBMxUEnAiiLMlUE8nCkowS",
+          "pdfLink": ""
+        },
+        {
+          "title": "Matrices and Determinants (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School Students",
+          "youtubeLink": "",
+          "pdfLink": ""
+        }
+      ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+      "name": "Combinatorics",
+      "icon": "∫",
+      "courses": [
+        {
+          "title": "Enumerative Combinatorics (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School, Undergraduate, Olympiad",
+          "youtubeLink": "",
+          "pdfLink": ""
+        },
+        {
+          "title": "Graph Theory (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School, Undergraduate, Olympiad",
+          "youtubeLink": "",
+          "pdfLink": ""
+        }
+      ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+    {
+      "name": "Calculus",
+      "icon": "∫",
+      "courses": [
+        {
+          "title": "Limits of Sequences",
+          "description": "This course is about limit of sequences, where we will start our study of calculus. We will undertake a rigorous study of the subject, suitable for undergrads. At the same time, a dedicated high school student should be able to get 100% out of the course. Total Watch Time: 17h 55m. Average Duration Per Video: 31m",
+          "prerequisites": "Sets, Functions, Relations, Graphs, Sequence and Series, Basic Coordinate Geometry, Facility with inequalities (optional)",
+          "relevantExams": "ISI, CMI, GATE. A  dedicated student who is preparing for JEE but is mathematically incined may benefit too.",
+          "suitableFor": "High School Students, Undergraduate Students",
+          "youtubeLink": "www.youtube.com/playlist?list=PLfMiIk4vyppLXMeprgSIAYPn-rc5AgaOw",
+          "pdfLink": ""
+        },
+        {
+          "title": "Limits and Continuity (Ongoing)",
+          "description": "This course is about limits and continuity. This is the second part of the calculus series, the predecessor being a course on limits of sequences. We will build on the predecessor and undertake a comprehensive study of the notion of continuity and related concepts (at a strong undergraduate level).",
+          "prerequisites": "Sets, Functions, Relations, Graphs, Sequence and Series, Basic Coordinate Geometry, Facility with inequalities (optional), My course on Limits of Sequences.",
+          "relevantExams": "ISI, CMI, GATE. A  dedicated student who is preparing for JEE but is mathematically incined may benefit too.",
+          "suitableFor": "High School Students, Undergraduate Students",
+          "youtubeLink": "www.youtube.com/playlist?list=PLfMiIk4vyppLXMeprgSIAYPn-rc5AgaOw",
+          "pdfLink": ""
+        },
+        {
+          "title": "Differentiation (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School, Undergraduate",
+          "youtubeLink": "",
+          "pdfLink": ""
+        },
+        {
+          "title": "Integration (To Be Made)",
+          "description": "",
+          "prerequisites": "",
+          "relevantExams": "",
+          "suitableFor": "High School, Undergraduate",
+          "youtubeLink": "",
+          "pdfLink": ""
         }
       ]
     }

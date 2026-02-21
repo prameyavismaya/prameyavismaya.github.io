@@ -914,6 +914,7 @@ h2::after {
    ============================================ */
 .about-content {
     max-width: 750px;
+    padding-top: 3rem;
 }
 
 .about-content p {
